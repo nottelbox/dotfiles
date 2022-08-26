@@ -64,6 +64,9 @@ export EDITOR='vim'
 # bare git repository for managing dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
+# add for tmux-cht.sh to path
+export PATH=$PATH:~/.local/bin
+
 # git shortcuts
 alias s="git status"
 alias a="git add ."
