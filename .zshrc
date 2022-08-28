@@ -74,4 +74,10 @@ alias c="git commit"
 alias p="git push"
 alias w="git switch"
 alias f="git fetch"
-alias p="git pull"
+alias u="git pull"
+
+#git config shortcuts
+alias cs="config status"
+alias ca="config add"
+alias cc="config commit"
+alias cp="config push"
