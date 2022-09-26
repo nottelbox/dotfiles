@@ -24,29 +24,51 @@ set termguicolors
 set list
 set listchars=tab:▸\ ,trail:·
 set ttyfast                 " Speed up scrolling in Vim
+autocmd FileType json syntax match Comment +\/\/.\+$+
+
+let mapleader="\<space>"
+let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-prettier', 'coc-sh', 'coc-tsserver', 'coc-pyright', 'coc-json', 'coc-git']
 
 call plug#begin()
 
 Plug 'https://github.com/vim-airline/vim-airline'
-Plug 'https://github.com/preservim/nerdtree'
-Plug 'lifepillar/vim-mucomplete'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+Plug 'edkolev/tmuxline.vim'
+
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'ryanoasis/vim-devicons'
+let g:NERDTreeGitStatusUseNerdFonts = 1
+" toggle NERDTree with leader-n and place cursor on current file
+nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
+nmap <leader>N :NERDTreeFind<CR>
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'preservim/nerdcommenter'
 Plug 'mhinz/vim-startify'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'ryanoasis/vim-devicons'
 " Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+" Plug 'honza/vim-snippets'
+
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
 
+" Plug 'lifepillar/vim-mucomplete'
+" set completeopt+=menuone
+" set completeopt+=noselect
+" alternative:
+" set completeopt+=noinsert
+" set shortmess+=c
 call plug#end()
 
-let mapleader="\<space>"
-let g:airline_powerline_fonts = 1
 
-" source config file
 nmap <leader>ve :edit ~/.config/nvim/init.vim<cr>
-" nmap <leader>vc :edit ~/.config/nvim/coc-settings.json<cr>
+nmap <leader>vc :edit ~/.config/nvim/coc-settings.json<cr>
 nmap <leader>vr :source ~/.config/nvim/init.vim<cr>
 
 nmap <leader>k :nohlsearch<CR>
@@ -85,13 +107,6 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
-" toggle NERDTree with leader-n and place cursor on current file
-nnoremap <expr> <leader>n g:NERDTree.IsOpen() ? ':NERDTreeClose<CR>' : @% == '' ? ':NERDTree<CR>' : ':NERDTreeFind<CR>'
-nmap <leader>N :NERDTreeFind<CR>
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
