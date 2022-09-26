@@ -25,9 +25,6 @@ set list
 set listchars=tab:▸\ ,trail:·
 set ttyfast                 " Speed up scrolling in Vim
 autocmd FileType json syntax match Comment +\/\/.\+$+
-" hi link CocFloating Normal
-" hi CocMenuSel ctermbg=237 guibg=#13354A
-" autocmd ColorScheme * hi CocMenuSel ctermbg=237 guibg=#13354A
 
 let mapleader="\<space>"
 let g:coc_global_extensions = ['coc-html', 'coc-css', 'coc-prettier', 'coc-sh', 'coc-tsserver', 'coc-pyright', 'coc-json', 'coc-git']
@@ -55,6 +52,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 inoremap <expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<Tab>"
 inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+hi link CocFloating Normal
 
 Plug 'preservim/nerdcommenter'
 Plug 'mhinz/vim-startify'
