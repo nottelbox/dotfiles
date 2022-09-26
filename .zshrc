@@ -70,7 +70,7 @@ export PATH=$PATH:~/.local/bin
 # git shortcuts
 alias s="git status"
 alias a="git add ."
-alias c="git commit"
+alias c="git commit -m"
 alias p="git push"
 alias w="git switch"
 alias f="git fetch"
@@ -81,3 +81,9 @@ alias cs="config status"
 alias ca="config add"
 alias cc="config commit"
 alias cp="config push"
+
+# alias for rocm pytorch docker image
+alias drun='sudo docker run -it --network=host --device=/dev/kfd --device=/dev/dri --group-add=video --ipc=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -v $HOME/dockerx:/dockerx'
+
+# viu alias for diplaying a 512x512 image with correct aspect ratio
+alias viu512='viu -w 100 -h 30'
