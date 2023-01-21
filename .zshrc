@@ -67,6 +67,8 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 # add for tmux-cht.sh to path
 export PATH=$PATH:~/.local/bin
 
+alias e="nvim"
+
 # git shortcuts
 alias s="git status"
 alias a="git add ."
@@ -79,11 +81,17 @@ alias u="git pull"
 #git config shortcuts
 alias cs="config status"
 alias ca="config add"
-alias cc="config commit"
+alias cc="config commit -m"
 alias cp="config push"
+
+alias k="kubectl"
+alias kgn="kubectl get nodes"
 
 # alias for rocm pytorch docker image
 alias drun='sudo docker run -it --network=host --device=/dev/kfd --device=/dev/dri --group-add=video --ipc=host --cap-add=SYS_PTRACE --security-opt seccomp=unconfined -v $HOME/dockerx:/dockerx'
 
 # viu alias for diplaying a 512x512 image with correct aspect ratio
 alias viu512='viu -w 100 -h 30'
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
