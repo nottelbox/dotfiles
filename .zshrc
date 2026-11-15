@@ -95,3 +95,4 @@ alias viu512='viu -w 100 -h 30'
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+export PATH="$HOME/.local/bin:$PATH"
